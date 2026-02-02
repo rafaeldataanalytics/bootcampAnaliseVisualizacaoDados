@@ -85,14 +85,13 @@ create table works_on(
     constraint fk_project_works_on_pno foreign key (Pno) references project(Pnumber)
 );
 
+
 create table dependent(
 	Essn char(9) not null,
     Dependent_name varchar(15) not null,
     Sex char, -- F ou M
     Bdate Date,
     Relationship varchar(8),
-    Age int not null,
-    constraint chk_age_dependent check(Age <= 21),
     constraint pk_dependent primary key (Essn, Dependent_name),
     constraint fk_dependent foreign key (Essn) references employee(Ssn)
 );
@@ -104,3 +103,137 @@ select * from information_schema.table_constraints
     
 select * from information_schema.referential_constraints
 	where constraint_schema = 'company';
+    
+-- Inserção de Dados BD Company
+-- Ativar para uso
+use company;
+-- Confirmar tabelas do BD
+show tables;
+
+insert into employee values ('Carlos', 'A', 'Pereira', '111111111', '1990-03-15',
+ '99708-138_Erechim_RS_BR', 'M', 5200.00, '987654321', 1),
+
+('Mariana', 'B', 'Oliveira', '222222222', '1992-07-10',
+ '99708-138_Erechim_RS_BR', 'F', 6100.00, '987654321', 1),
+
+('Lucas', 'C', 'Ferreira', '333333333', '1988-01-25',
+ '99708-138_Erechim_RS_BR', 'M', 4800.00, '987654321', 1),
+
+('Fernanda', 'D', 'Costa', '444444444', '1995-09-12',
+ '99708-138_Erechim_RS_BR', 'F', 7300.00, '987654321', 1),
+
+('Bruno', 'E', 'Ramos', '555555555', '1987-11-30',
+ '99708-138_Erechim_RS_BR', 'M', 5600.00, '987654321', 1),
+
+('Juliana', 'F', 'Almeida', '666666666', '1993-06-18',
+ '99708-138_Erechim_RS_BR', 'F', 6900.00, '123456789', 1),
+
+('Diego', 'G', 'Barbosa', '777777777', '1989-02-08',
+ '99708-138_Erechim_RS_BR', 'M', 8200.00, '123456789', 1),
+
+('Patricia', 'H', 'Lima', '888888888', '1991-08-22',
+ '99708-138_Erechim_RS_BR', 'F', 7500.00, '123456789', 1),
+
+('Renato', 'I', 'Souza', '999999998', '1985-04-05',
+ '99708-138_Erechim_RS_BR', 'M', 9100.00, '123456789', 1),
+
+('Aline', 'J', 'Martins', '999999997', '1994-12-14',
+ '99708-138_Erechim_RS_BR', 'F', 6400.00, '987654321', 1);
+
+select * from employee;
+
+UPDATE employee
+SET Dno = 4
+WHERE Ssn = '999999998';
+
+SELECT Fname, Salary FROM employee WHERE salary < (SELECT avg(salary) FROM employee);
+
+select min(salary),avg(salary),max(salary) from employee;
+
+SELECT
+    Fname,
+    -- Salary,
+    -- (SELECT AVG(Salary) FROM employee) AS Avg_Salary,
+    (SELECT AVG(Salary) FROM employee) - Salary AS Diff_To_Avg
+FROM employee
+WHERE Salary < (SELECT AVG(Salary) FROM employee);
+
+select 
+	Fname,
+    Salary,
+     Salary - (SELECT avg(Salary) FROM employee)   AS Diff_Avg,
+    (SELECT avg(Salary) FROM employee) as Salary_Avg
+FROM employee
+WHERE Salary >= (SELECT min(Salary) FROM employee)
+order by Diff_Avg;
+
+SELECT 
+    -- Fname,
+    Ssn as Registro,
+   -- Salary,
+    CASE
+        WHEN Salary > (SELECT AVG(Salary) FROM employee) THEN 'Maior'
+        WHEN Salary < (SELECT AVG(Salary) FROM employee) THEN 'Menor'
+        ELSE 'NA'
+    END AS Salary_level
+FROM employee
+ORDER BY Salary Asc;
+
+drop table denpendent;
+insert into dependent values
+(111111111, 'Amarildo','F','1986-08-05','Spouse'),
+(222222222, 'Arnaldo','F','1986-08-05','Spouse'),
+(333333333, 'Amanda','F','1986-08-05','Spouse'),
+(444444444, 'Armando','M','1996-04-05','Daughter'),
+(555555555, 'Aline','F','1986-02-15','Daughter'),
+(999999998, 'Alano','M','1976-04-05','Daughter')
+;
+select * from  dependent;
+
+insert into departament values
+('Reserach',5,111111111,'1991-03-15','1990-03-15'),
+('Administration',4,222222222,'1994-07-10','1992-07-10'),
+('Headquarters',3,333333333,'1990-01-25','1988-01-23');
+
+
+select * from departament;
+
+insert into dept_locations values
+(3,'Houston'),
+(4,'Stafford'),
+(5,'Bellaire'),
+(5,'Sugarland'),
+(5,'Houston');
+select * from dept_locations;
+
+insert into project values
+('ProductX', 1,'Bellaire',5),
+('ProductY', 2,'Sugarland',5),
+('ProductZ', 3,'Houston',5),
+('Computerization', 10,'Stafford',4),
+('Reorganization', 20,'Houston',3),
+('Newbenefits', 30,'Stafford',4);
+select * from project;
+
+insert into works_on values
+(777777777,30 , 31.2);
+select * from works_on;
+
+-- Exemplo de Recuperação de Dados
+
+select * from employee;
+-- gerente por departamento
+select e.Ssn, e.Fname, d.Dname from employee e, departament d where (e.Ssn = d.Mgr_ssn);
+-- Dependentes por funcionários
+select e.Fname, d.Dependent_name, d.Relationship from employee e , dependent d where (e.Ssn = d.Essn);
+-- Dados de funcionário Especifico
+select e.Fname, e.Minit, e.Lname, e.Bdate, e.Address  from employee e
+where  e.Fname = 'Bruno' and e.Minit = 'E' and e.Lname = 'Ramos';
+-- Recuperar nome de departamento, com valor espeficio
+select * from departament dept 
+where dept.Dname = 'Reserach';
+-- Recuperando dados dos funcionários por setor
+select * from departament;
+select e.Fname, e.Lname, e.Address
+from employee e, departament d
+where d.Dname = 'Administration' and d.Dnumber = e.Dno;
