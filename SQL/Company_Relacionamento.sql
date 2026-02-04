@@ -110,8 +110,11 @@ use company;
 -- Confirmar tabelas do BD
 show tables;
 
-insert into employee values ('Carlos', 'A', 'Pereira', '111111111', '1990-03-15',
- '99708-138_Erechim_RS_BR', 'M', 5200.00, '987654321', 1),
+insert into employee values ('Charles', 'A', 'Pereira', '111111100', '1991-03-15',
+ '99708-138_Erechim_RS_BR', 'M', 15200.00, '987654321', 1) ;
+
+insert into employee values ('Carlos', 'A', 'Pereira', '111111111', '1991-03-15',
+ '99708-138_Erechim_RS_BR', 'M', 15200.00, '987654321', 1),
 
 ('Mariana', 'B', 'Oliveira', '222222222', '1992-07-10',
  '99708-138_Erechim_RS_BR', 'F', 6100.00, '987654321', 1),
@@ -139,6 +142,10 @@ insert into employee values ('Carlos', 'A', 'Pereira', '111111111', '1990-03-15'
 
 ('Aline', 'J', 'Martins', '999999997', '1994-12-14',
  '99708-138_Erechim_RS_BR', 'F', 6400.00, '987654321', 1);
+
+update employee
+set Address = '90108-011_Marau_RS_BR'
+where Ssn = '666666666';
 
 select * from employee;
 
@@ -195,6 +202,9 @@ insert into departament values
 ('Administration',4,222222222,'1994-07-10','1992-07-10'),
 ('Headquarters',3,333333333,'1990-01-25','1988-01-23');
 
+insert into departament values
+('Sesmt',7,444444444,'1991-03-15','1990-03-15')
+;
 
 select * from departament;
 
@@ -213,6 +223,14 @@ insert into project values
 ('Computerization', 10,'Stafford',4),
 ('Reorganization', 20,'Houston',3),
 ('Newbenefits', 30,'Stafford',4);
+
+insert into project values
+('ProductX', 7,'Bellaire',5),
+('ProductY', 8,'Sugarland',5),
+('ProductZ', 9,'Houston',5),
+('Computerization', 12,'Stafford',4),
+('Reorganization', 22,'Houston',3),
+('Newbenefits', 33,'Stafford',4);
 select * from project;
 
 insert into works_on values
@@ -237,3 +255,7 @@ select * from departament;
 select e.Fname, e.Lname, e.Address
 from employee e, departament d
 where d.Dname = 'Administration' and d.Dnumber = e.Dno;
+-- horas de funcionarios por projeto
+select p.Pname, w.Essn, e.Fname, w.Hours 
+from project p, works_on w, employee e 
+where p.Pnumber = w.Pno and w.Essn = e.Ssn;
