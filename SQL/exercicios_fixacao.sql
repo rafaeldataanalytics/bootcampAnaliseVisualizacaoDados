@@ -97,5 +97,62 @@ where d.Dnumber = dl.Dnumber and d.Mgr_Ssn = e.Ssn;
 -- recuperando Pnumber e Dnum projetos dentro de localização Stafford
 select p.Pnumber, p.Dnum, e.Address, e.Bdate, p.Plocation
 from departament d, project p, employee e
-where d.Dnumber = p.Dnum and p.Plocation='Stafford' and Mgr_ssn = e. Ssn
+where d.Dnumber = p.Dnum and p.Plocation='Stafford' and Mgr_ssn = e. Ssn;
+
+-- Like (Strings) e between (numéricos)
+use company;
+desc employee;
+desc departament;
+select * from employee;
+select * from departament;
+
+-- Like
+select concat(Fname,' ', Lname) Nome_Funcionários, Dname Nome_Departamentos, Address
+	from departament , employee 
+	where (Dno=Dnumber and Address like'%Ernestina%')
 ;
+select concat(Fname,' ', Lname) Nome_Funcionários, Address
+	from employee 
+	where (Address like'%Aurea%')
+;
+
+-- Between
+
+Select concat(Fname,' ',Lname) Funcionários , Salary
+from employee
+where (Salary between 10000 and 20000);
+
+
+-- Operadores Lógicos
+
+select Bdate, Address 
+	from employee
+    where Fname='Rafael' and Lname='Silva'
+    ;
+    
+select * 
+	from departament
+    where Dname = 'Reserach' or Dname = 'Administration'
+    ;
+    
+select concat(Fname,' ',Lname) Nomes
+	from departament, employee
+    where Dname = 'Administration' and Dnumber=Dno
+    ;
+    
+    
+-- operadores Matemáticos - Union, except e intersect
+
+(
+select distinct Pnumber
+	from project, departament, employee
+    where Dnum=Dnumber and Mgr_Ssn = Ssn
+		and Lname = 'Lucas'
+)
+union
+(
+select distinct Pnumber
+	from project, works_on, employee
+    where Pnumber=Pno and Essn = Ssn
+		and Lname = 'Lucas'
+);

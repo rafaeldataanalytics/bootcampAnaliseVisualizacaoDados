@@ -144,8 +144,8 @@ insert into employee values ('Carlos', 'A', 'Pereira', '111111111', '1991-03-15'
  '99708-138_Erechim_RS_BR', 'F', 6400.00, '987654321', 1);
 
 update employee
-set Address = '90108-011_Marau_RS_BR'
-where Ssn = '666666666';
+set Address = '90108-011_Ernestina_RS_BR'
+where Ssn = '222222222';
 
 select * from employee;
 
@@ -196,6 +196,10 @@ insert into dependent values
 (999999998, 'Alano','M','1976-04-05','Daughter')
 ;
 select * from  dependent;
+
+update dependent
+set Relationship = 'Filho'
+where Essn = '555555555';
 
 insert into departament values
 ('Reserach',5,111111111,'1991-03-15','1990-03-15'),

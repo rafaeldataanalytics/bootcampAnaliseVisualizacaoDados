@@ -72,3 +72,5 @@ create table transacoesBancarias(
 );
 show tables;
 
+
+
