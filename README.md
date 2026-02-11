@@ -1,188 +1,132 @@
-# 📊 SQL Queries -- MySQL
+📊 SQL & MySQL – Relational Database Modeling
 
-Projeto com exemplos práticos de consultas SQL utilizando MySQL.
-O objetivo é demonstrar operações fundamentais como seleção de dados,
-filtros, agregações, JOINs e ordenação.
+Implementação prática de modelagem relacional, integridade referencial e consultas avançadas em MySQL.
 
-Este repositório é focado em prática de banco de dados para
-desenvolvimento Back-End e análise de dados.
+🚀 Tech Stack
 
----
+MySQL
 
-## 🗂 Estrutura do Projeto
+SQL ANSI
 
-O projeto considera duas tabelas:
+MySQL Workbench
 
-- `Tabela1`
-- `Tabela2`
+🧠 Core Concepts Applied
 
-Ambas possuem a coluna `ColunaId` como chave de relacionamento.
+Database creation & schema organization
 
----
+Relational modeling
 
-## 🧱 Estrutura Exemplo das Tabelas
+Primary & Foreign Keys
 
-```sql
-CREATE TABLE Tabela1 (
-    ColunaId INT,
-    ColunaName VARCHAR(100)
-);
+Composite keys
 
-CREATE TABLE Tabela2 (
-    ColunaId INT,
-    ColunaName VARCHAR(100)
-);
-```
+Self join (hierarchical relationship)
 
----
+1:N and N:N relationships
 
-# 🔎 Consultas Básicas
+Check constraints & unique constraints
 
-## 1️⃣ Selecionar todos os registros
+ON UPDATE CASCADE / ON DELETE SET NULL
 
-```sql
-SELECT *
-FROM Tabela1 t;
-```
+CRUD operations
 
-Retorna todos os registros da tabela.
+JOINs
 
----
+Subqueries
 
-## 2️⃣ Contar total de registros
+Aggregate functions
 
-```sql
-SELECT COUNT(*) AS records
-FROM Tabela1 t;
-```
+UNION operations
 
-Utiliza função de agregação `COUNT()` para contabilizar registros.
+🏗 Project Structure
+🔹 testeMysql
 
----
+Basic relational structure:
 
-## 3️⃣ Filtrar valores não nulos
+person
 
-```sql
-SELECT
-    t.ColunaId,
-    t.ColunaName
-FROM Tabela1 t
-WHERE t.ColunaName IS NOT NULL;
-```
+favorite_food
 
-Filtra apenas registros onde `ColunaName` possui valor.
+Focus:
 
----
+FK relationships
 
-## 4️⃣ Selecionar dados da segunda tabela
+Composite primary keys
 
-```sql
-SELECT *
-FROM Tabela2 t2;
-```
+Structured JOIN queries
 
----
+🔹 company (Corporate Relational Model)
 
-# 🔗 JOIN + Agregação
+Complete organizational schema including:
 
-## 5️⃣ Unir tabelas e contar registros por grupo
+employee (self-reference supervisor)
 
-```sql
-SELECT
-    t2.ColunaId,
-    t2.ColunaName,
-    COUNT(*) AS quantidade
-FROM Tabela1 t
-INNER JOIN Tabela2 t2
-    ON t.ColunaId = t2.ColunaId
-GROUP BY
-    t2.ColunaId,
-    t2.ColunaName;
-```
+departament
 
-### 🔍 O que essa query faz:
+dept_locations
 
-- Realiza um `INNER JOIN`
-- Agrupa por `ColunaId` e `ColunaName`
-- Conta a quantidade de registros por grupo
+project
 
----
+works_on (N:N relationship)
 
-## 6️⃣ Retornar os 5 menores resultados
+dependent
 
-```sql
-SELECT
-    t2.ColunaId,
-    t2.ColunaName,
-    COUNT(*) AS quantidade
-FROM Tabela1 t
-INNER JOIN Tabela2 t2
-    ON t.ColunaId = t2.ColunaId
-GROUP BY
-    t2.ColunaId,
-    t2.ColunaName
-ORDER BY
-    quantidade ASC
-LIMIT 5;
-```
+Focus:
 
-### 🔍 Diferença nesta consulta:
+Referential integrity
 
-- `ORDER BY quantidade ASC` → ordena do menor para o maior
-- `LIMIT 5` → retorna apenas os 5 primeiros registros
+Business rule validation
 
----
+Complex relationships
 
-# 🧠 Conceitos Demonstrados
+Normalized schema
 
-- SELECT
-- WHERE
-- IS NOT NULL
-- COUNT()
-- INNER JOIN
-- GROUP BY
-- ORDER BY
-- LIMIT
-- Alias de tabelas
-- Funções de agregação
+🔹 manipulacao (Banking Simulation)
 
----
+contasBancarias
 
-# ⚙️ Como Executar
+clienteBanco
 
-1. Instale o MySQL Server.
-2. Crie um banco de dados:
+transacoesBancarias
 
-```sql
-CREATE DATABASE exemplo_db;
-USE exemplo_db;
-```
+Focus:
 
-3. Crie as tabelas.
-4. Execute as queries no MySQL Workbench ou terminal.
+Multiple foreign keys to same table
 
----
+Transaction consistency
 
-# 🚀 Melhorias Futuras
+Unique constraints
 
-- Adicionar dados fictícios para testes
-- Implementar índices
-- Testar performance com EXPLAIN
-- Criar exemplos com:
-  - LEFT JOIN
-  - Subqueries
-  - CASE
-  - Views
-  - Procedures
+Financial modeling logic
 
----
+🔎 Query Capabilities Demonstrated
 
-# 🎯 Objetivo de Aprendizado
+INNER / LEFT JOIN
 
-Este projeto reforça fundamentos essenciais para:
+GROUP BY + HAVING
 
-- Desenvolvimento Back-End
-- Modelagem de dados
-- Construção de APIs
-- Análise de dados
-- Preparação para entrevistas técnicas
+CASE expressions
+
+Subqueries (correlated & non-correlated)
+
+Salary vs AVG comparisons
+
+Aggregate analytics (COUNT, SUM, AVG, MAX, MIN)
+
+📈 What This Project Demonstrates
+
+✔ Strong relational database foundation
+✔ Understanding of data integrity
+✔ Structured schema design
+✔ Clean and executable SQL scripts
+✔ Back-end oriented database thinking
+
+🎯 Career Focus
+
+Back-end Development | Data Analysis | Database Engineering
+
+👨‍💻 Author
+
+Rafael
+Focused on SQL, Python and Back-end Systems Development
+
