@@ -1,132 +1,115 @@
-📊 SQL & MySQL – Relational Database Modeling
+# 📊 SQL & MySQL – Relational Database Modeling
 
 Implementação prática de modelagem relacional, integridade referencial e consultas avançadas em MySQL.
 
-🚀 Tech Stack
+---
 
-MySQL
+## 🚀 Tech Stack
 
-SQL ANSI
+- MySQL  
+- SQL ANSI  
+- MySQL Workbench  
 
-MySQL Workbench
+---
 
-🧠 Core Concepts Applied
+## 🧠 Core Concepts Applied
 
-Database creation & schema organization
+- Database creation & schema organization  
+- Relational modeling  
+- Primary & Foreign Keys  
+- Composite keys  
+- Self join (hierarchical relationship)  
+- 1:N and N:N relationships  
+- Check constraints & unique constraints  
+- ON UPDATE CASCADE / ON DELETE SET NULL  
+- CRUD operations  
+- JOINs  
+- Subqueries  
+- Aggregate functions  
+- UNION operations  
 
-Relational modeling
+---
 
-Primary & Foreign Keys
+## 🏗 Project Structure
 
-Composite keys
+### 🔹 `testeMysql`
 
-Self join (hierarchical relationship)
+**Basic relational structure:**
 
-1:N and N:N relationships
+- `person`  
+- `favorite_food`  
 
-Check constraints & unique constraints
+**Focus:**
 
-ON UPDATE CASCADE / ON DELETE SET NULL
+- FK relationships  
+- Composite primary keys  
+- Structured JOIN queries  
 
-CRUD operations
+---
 
-JOINs
+### 🔹 `company` (Corporate Relational Model)
 
-Subqueries
+**Complete organizational schema including:**
 
-Aggregate functions
+- `employee` (self-reference supervisor)  
+- `departament`  
+- `dept_locations`  
+- `project`  
+- `works_on` (N:N relationship)  
+- `dependent`  
 
-UNION operations
+**Focus:**
 
-🏗 Project Structure
-🔹 testeMysql
+- Referential integrity  
+- Business rule validation  
+- Complex relationships  
+- Normalized schema  
 
-Basic relational structure:
+---
 
-person
+### 🔹 `manipulacao` (Banking Simulation)
 
-favorite_food
+- `contasBancarias`  
+- `clienteBanco`  
+- `transacoesBancarias`  
 
-Focus:
+**Focus:**
 
-FK relationships
+- Multiple foreign keys to same table  
+- Transaction consistency  
+- Unique constraints  
+- Financial modeling logic  
 
-Composite primary keys
+---
 
-Structured JOIN queries
+## 🔎 Query Capabilities Demonstrated
 
-🔹 company (Corporate Relational Model)
+- INNER / LEFT JOIN  
+- GROUP BY + HAVING  
+- CASE expressions  
+- Subqueries (correlated & non-correlated)  
+- Salary vs AVG comparisons  
+- Aggregate analytics (COUNT, SUM, AVG, MAX, MIN)  
 
-Complete organizational schema including:
+---
 
-employee (self-reference supervisor)
+## 📈 What This Project Demonstrates
 
-departament
+- ✔ Strong relational database foundation  
+- ✔ Understanding of data integrity  
+- ✔ Structured schema design  
+- ✔ Clean and executable SQL scripts  
+- ✔ Back-end oriented database thinking  
 
-dept_locations
+---
 
-project
+## 🎯 Career Focus
 
-works_on (N:N relationship)
+Back-end Development | Data Analysis | Database Engineering  
 
-dependent
+---
 
-Focus:
+## 👨‍💻 Author
 
-Referential integrity
-
-Business rule validation
-
-Complex relationships
-
-Normalized schema
-
-🔹 manipulacao (Banking Simulation)
-
-contasBancarias
-
-clienteBanco
-
-transacoesBancarias
-
-Focus:
-
-Multiple foreign keys to same table
-
-Transaction consistency
-
-Unique constraints
-
-Financial modeling logic
-
-🔎 Query Capabilities Demonstrated
-
-INNER / LEFT JOIN
-
-GROUP BY + HAVING
-
-CASE expressions
-
-Subqueries (correlated & non-correlated)
-
-Salary vs AVG comparisons
-
-Aggregate analytics (COUNT, SUM, AVG, MAX, MIN)
-
-📈 What This Project Demonstrates
-
-✔ Strong relational database foundation
-✔ Understanding of data integrity
-✔ Structured schema design
-✔ Clean and executable SQL scripts
-✔ Back-end oriented database thinking
-
-🎯 Career Focus
-
-Back-end Development | Data Analysis | Database Engineering
-
-👨‍💻 Author
-
-Rafael
-Focused on SQL, Python and Back-end Systems Development
-
+**Rafael**  
+Focused on SQL, Python and Back-end Systems Development  
